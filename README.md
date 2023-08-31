@@ -1,4 +1,4 @@
-![image](https://github.com/kukukukujiedao/machine-learning-group5/assets/143621522/d711aefd-d58d-4763-a664-952b93139a34)# machine-learning-group5
+# machine-learning-group5
 ## 一、成员分工
 ### （一）小组成员
 - 组长：连航  前端页面设计与代码实现、前后端通信实现，后端架构设计，文档总和

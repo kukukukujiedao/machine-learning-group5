@@ -16,8 +16,8 @@
 ## 三、算法原理介绍
 ### 1. 线性回归算法
 线性回归是一种基本的统计学和机器学习算法，用于建立和分析变量之间线性关系的模型。它适用于解决回归问题，其中目标是预测一个连续的数值输出，基于一个或多个输入特征。
-线性回归的基本思想是假设自变量（输入特征）和因变量（输出）之间存在一个线性关系，可以用一条直线来近似表示。这条直线被称为“回归线”，它的方程形式为：
-y=b0​+b1​x1​+b2​x2​+…+bn​xn​
+线性回归的基本思想是假设自变量（输入特征）和因变量（输出）之间存在一个线性关系，可以用一条直线来近似表示。这条直线被称为“回归线”，它的方程形式为：<br>
+![image](https://github.com/kukukukujiedao/machine-learning-group5/assets/143621522/d4646a78-04c9-480a-aa7b-9340900df0a6)
 其中：
 y 是预测的因变量
 x1​,x2​,…,xn​ 是自变量
@@ -26,7 +26,12 @@ b1​,b2​,…,bn​ 是自变量的系数，表示对应特征对输出的影�
 线性回归的目标是找到合适的系数b0​,b1​,…,bn使得预测值与实际观测值之间的平方误差最小化
 其中m是样本数量，yi是第i个样本的实际观测值，^yi是模型预测的值
 ### 2. 逻辑回归算法
-逻辑回归是一种常用于分类问题的机器学习算法。与其名称不同，它并非回归算法，而是用于预测二分类问题的概率模型。逻辑回归通过将输入特征的线性组合经过一个特殊函数（称为sigmoid函数）映射到0到1的概率范围，从而实现对样本分类。模型的训练旨在找到最佳参数，以使预测概率与实际标签尽可能匹配。逻辑回归具有计算高效、简单易懂的优势，常用于垃圾邮件分类、疾病预测等领域。
+逻辑回归是一种用于解决分类问题的统计学和机器学习算法，尽管名字中带有"回归"两个字，但实际上它用于分类任务，而不是回归任务。逻辑回归主要用于二分类问题，也可以通过一些扩展应用于多分类问题。
+逻辑回归使用一种称为"逻辑函数"或"sigmoid函数"的特殊函数来建立输入特征和输出类别之间的关系。逻辑函数的数学表达式如下：<br>
+![image](https://github.com/kukukukujiedao/machine-learning-group5/assets/143621522/3b4ceab3-fa88-404d-8cc9-7b0b9a9b8ee2)<br>
+在这里,z 是输入特征的线性组合：<br>
+![image](https://github.com/kukukukujiedao/machine-learning-group5/assets/143621522/17f3d14d-53f2-4b29-85a0-88090a37aa20)<br>
+在逻辑回归模型中，b0,b1...bn是模型的权重，而x1,x2...xn是输入特征。逻辑函数将任何实数值映射到一个介于0和1之间的概率值，表示预测样本属于某一类别的概率。如果概率大于等于一个阈值（通常是0.5），则将样本分类为正类；否则，将其分类为负类。训练逻辑回归模型的目标是找到合适的权重，使得模型能够最好地拟合训练数据。这通常涉及最大化似然函数（或等价地，最小化对数似然损失），以便使模型的预测与实际观测值尽可能吻合。
 ### 3. 决策树算法
 决策树是一种常用的机器学习算法，适用于分类和回归任务。它的工作原理类似于人们在做决策时提出一系列问题，每个问题都基于输入数据的特征，帮助将数据逐步划分成不同的类别或数值区间。这些问题构成了树状结构，树的每个节点代表一个问题，每个分支代表问题的不同答案，而叶节点则对应着最终的分类或回归结果。决策树从数据中学习出最佳的问题和划分方式，使其在预测新数据时能够高效地进行决策。它易于理解、可解释，还能够处理非线性关系和复杂的特征交互。
 ### 4. 朴素贝叶斯算法
@@ -62,112 +67,32 @@ PCA的关键思想是通过寻找协方差矩阵的主要特征向量，找到�
 ## 五、架构设计思路
 ### （一）前端架构
 前端主要通过HTML、CSS、JavaScript三种语言进行编写。
-- HTML 首先通过HTML完成对前端页面中根据设计需要完成每个板块盒子的设置，给出大致盒子叠加的关系，同时规划好整个网页的布局与分割。其次完成各个盒子内元素的设计，如文字，图片，单选框复选框等组件，合理根据前端页面内容填充盒子。需要注意的是，对于不同盒子或者元素标签的命名是需要考究的，以便后续CSS渲染过程中选择器的合理使用。
-- CSS  CSS在前端设计中的作用是完成对HTML代码的美化。对于盒子设置合适的大小与边框，同时利用定位或流动等方式完成对盒子位置的摆放，使整体页面观感上整洁美观。对于盒子内元素，如字体大小颜色样式和段落间隔，照片的变形和选中时的浮动效果，单选框复选框样式的美化，都是通过CSS进行的。
+- HTML   首先通过HTML完成对前端页面中根据设计需要完成每个板块盒子的设置，给出大致盒子叠加的关系，同时规划好整个网页的布局与分割。其次完成各个盒子内元素的设计，如文字，图片，单选框复选框等组件，合理根据前端页面内容填充盒子。需要注意的是，对于不同盒子或者元素标签的命名是需要考究的，以便后续CSS渲染过程中选择器的合理使用。
+- CSS    CSS在前端设计中的作用是完成对HTML代码的美化。对于盒子设置合适的大小与边框，同时利用定位或流动等方式完成对盒子位置的摆放，使整体页面观感上整洁美观。对于盒子内元素，如字体大小颜色样式和段落间隔，照片的变形和选中时的浮动效果，单选框复选框样式的美化，都是通过CSS进行的。多数动态效果通过伪类选择器实现，checked和hover等伪类选择器可以很好的将某些组件在选中或停浮前后的动态效果展示出来。
+- JavaScript   JavaScript在前端架构中主要有两个作用。首先是通过监听器函数和checked属性完成对图片和单选框的绑定，实现选中图片即选中单选框的效果。<br/>
+  其次，JavaScript通过python中自带的eel库来完成对后端函数的调用。在JavaScript函数中，可以直接使用eel库暴露给我们的后端函数，从而可以通过对前端页面中选择框组件的分支判断语句来实现参数传递，从而后端可以根据前端页面用户所选的选项完成参数接受。后端完成模型训练和评估后，还可以在被JavaScript调用的情况下把评估结果完成展示。
+  
+
+### （二）前后端通信架构
+> 在前后端通信方面我们选择使用eel这个python库。
+> eel允许你使用Python构建简单的桌面应用程序，并通过使用Web前端技术（如HTML、CSS和JavaScript）在桌面应用程序中嵌入一个Web界面。Eel的目标是让开发者能够以Python为主要语言来创建跨平台的桌面应用，同时能够利用Web技术来实现动态和交互式的用户界面。它具有轻量级、简单易用的优点，还可以实现实时交互，可以在Python代码中调用JavaScript函数，反之亦然，从而实现Python和Web界面之间的实时交互。
+基本用法就是将一个HTML文件嵌入到Python应用中。你可以在Python中定义一个函数，然后通过JavaScript来调用这个函数。<br/>
+主要使用到的函数如下：<br/>
+eel.expose(function, **kwargs)： 这个装饰器用于将Python函数暴露给前端 JavaScript。在前端代码中，你可以通过 eel.function_name() 来调用这个函数，并且它会返回一个 Promise 对象。<br/>
+eel.init(path, allowed_extensions=[])： 这个函数用于初始化 Eel 应用。你需要提供 HTML 文件的路径，Eel 将会从这个路径加载你的前端界面。你还可以通过 allowed_extensions 参数设置允许的文件扩展名。<br/>
+eel.start(html=None, options=None, suppress_error=True)： 这个函数用于启动 Eel 应用。你可以提供一个 HTML 文件的路径来指定初始页面，也可以在参数中设置一些选项。<br/>
+其中在eel.start函数中使用了 WebSocket 技术来实现实时的双向通信，以便在服务器和客户端之间传递数据。在这个函数中，run_lambda() 函数启动了一个 WebSocket 服务器，允许用户端通过 WebSocket 连接与服务器进行实时通信。WebSocket 服务器的具体实现可能在 register_eel_routes() 函数中，从而确保 WebSocket 连接能够被正常处理。<br/>
+简单来说eel让我们更简单的完成websocket所做的前后端通信的工作，使工作量和代码行数大大减少。<br/>
+在本程序中，首先使用expose函数将十种算法后端代码暴露给JavaScript
+![image](https://github.com/kukukukujiedao/machine-learning-group5/assets/143621522/2354e15b-411b-43f8-aaed-85133627cd5d)
 
 
-### （二）后端架构
-> 后端分为数据集，数据分割，模型、评估和工厂模式五个功能模块，每个模块均设置父类，分别为Dataset类，Splitter类，Model类、Evaluation类和Factory类。  
-#### 1. 数据集模块
-Dataset类包含__init__函数，load函数和data_target_split函数：
-- __init__函数，即初始化函数。该函数对路径、数据集、特征和标签进行初始化。
-- load函数，即数据载入函数。该函数根据路径对数据集进行赋值。
-- data_target_split函数，即数据集分割函数。该函数对特征和标签进行赋值。
 
-Dataset类有三个子类，分别为IrisDataset类，WineQualityDataset类和HeartDiseaseDataSet类。每个子类均包含__init__函数和data_target函数且每个子类函数的内容架构相同：
-- __init__函数，即初始化函数。该函数对路径进行初始化。
-- data_target函数，即数据集分割函数。该函数首先调用父类的load函数进行数据集的加载，然后根据列名划分特征和标签。
-#### 2. 数据分割模块
-Splitter类包含__init__函数，即初始化函数，该函数对特征和标签进行初始化。
 
-Splitter类有两个子类，分别为HoldOut类和BootStrapping类。每个子类均包含__init__函数，split函数：
-- HoldOut类
-    - __init__函数，即初始化函数。该函数对特征、标签、数据分割比例和随机状态进行初始化。
-    - split函数，即数据分割函数。该函数首先根据随机状态设置随机种子，再获取样本数量和测试集大小，然后随机选择测试集的索引，最后依据索引构建训练集和测试集。
-- BootStrapping类
-    - __init__函数，即初始化函数。该函数对特征和标签进行初始化。
-    - split函数，即数据分割函数。该函数首先进行m次放回抽样，得到训练集的序号，然后将剩下的序号记为测试集序号，最后产生训练/测试集。
-#### 3. 模型模块
-Model类有八个子类，分别为DecisionTree类，SVM类，GBDT类，NB类，LinearRegression类，LogisticRegression类，KNN类和KMeans类。除了这八个子类，该模块还有一个继承自DecisionTree类的RandomForest类和一个PCA类。  
-- DecisionTree类，SVM类，GBDT类，NB类，LinearRegression类，LogisticRegression类，KNN类，KMeans类
-    - 主要函数为fit函数和predict函数，其他函数根据这两个函数所需来写。
-    - fit函数，即训练函数。该函数负责模型的训练。
-    - predict函数，即预测函数。该函数负责模型的预测。
-- RandomForest类
-    - 继承自DecisionTree类，主要函数为fit函数和predict函数，同时会用到DecisionTree类来构建所需的决策树。
-- PCA类
-    - LinearRegression类，LogisticRegression类，KNN类和KMeans类中调用了该类的transform函数。
-    - 当数据的维度大于4时，调用该函数对数据进行降维处理。
-- 本项目中的模型与适用的问题以及适用数据集的关系【表述为模型（适用的问题）：适用的数据集】
-    - DecisionTree（回归问题）：WineQualityDataset，HeartDiseaseDataSet
-    - SVM（二分类问题）：HeartDiseaseDataSet
-    - GBDT（分类问题）：WineQualityDataset，HeartDiseaseDataSet
-    - NB（分类问题）：IrisDataset，WineQualityDataset，HeartDiseaseDataSet
-    - LinearRegression（回归问题）：WineQualityDataset，HeartDiseaseDataSet
-    - LogisticRegression（二分类问题）：HeartDiseaseDataSet
-    - KNN（分类问题、回归问题）：IrisDataset，WineQualityDataset，HeartDiseaseDataSet
-    - KMeans（聚类问题）：IrisDataset，WineQualityDataset，HeartDiseaseDataSet
-    - RandomForest（分类问题、回归问题）：WineQualityDataset，HeartDiseaseDataSet
-#### 4. 评估模块
-Evaluation类包含__init__函数，即初始化函数，该函数依据传入的参数对真实值和预测值进行初始化。  
 
-Evaluation类有十个子类，分别为Accuracy类，F1类，PR类，AUC类，ROC类，FM类，Rand类，MSE类，RMSE类和Distance类。每个子类都使用__call__方法，在评估时，只需要将真实值和预测值传给实例对象，然后调用该实例对象。每个子类都会返回评估结果到服务端。
-- Accuracy类，F1类，PR类，AUC类，ROC类，FM类，Rand类，MSE类，RMSE类和Distance类
-    - Accuracy类
-        - 该类的__call__中首先调用accuracy_cal函数，然后调用并返回evaluate函数。
-        - accuracy_cal函数统计真正例、假正例、真反例、假反例的数目。
-        - evaluate函数计算并返回准确率。
-    - F1类
-        - 该类的__call__中首先调用f1_score函数，然后调用并返回evaluate函数。
-        - f1_score函数统计真正例、真反例、假反例的数目。
-        - evaluate函数计算并返回F1度量。
-    - PR类
-        - 该类的__call__中首先调用plot函数，然后返回'curve'字符串。
-        - plot函数需要调用precision_recall_curve函数来获取精确率和召回率，并根据精确率和召回率来作出曲线。
-    - AUC类
-        - 该类调用了ROC类
-        - 该类的__call__中首先调用auc函数，然后调用并返回evaluate函数。
-        - auc函数用到DecisionTree类来构建所需的ROC实例对象，然后调用roc_curve函数来获取真正例率和假正例率。
-        - evaluate函数首先对假正例率列表进行排序，然后根据排序索引对真正例率列表进行排序，最后计算并返回排序后的真正例率和假正例率形成的曲线下的面积。
-    - ROC类
-        - 该类的__call__中首先调用plot函数，然后返回'curve'字符串。
-        - plot函数需要调用roc_curve函数来获取真正例率和假正例率，并根据真正例率和假正例率来作出曲线。
-    - FM类
-        - 该类的__call__调用并返回compute_fm_index函数。
-        - compute_fm_index函数需要调用compute_confusion_matrix函数来得到混淆矩阵，再根据根据混淆矩阵的真正例、假正例、真反例、假反例计算精确率和召回率，最后根据精确率和召回率计算并返回FM指数。
-    - Rand类
-        - 该类的__call__调用并返回compute_fm_index函数。
-        - compute_fm_index函数需要调用compute_confusion_matrix函数来得到混淆矩阵，再根据根据混淆矩阵的真正例、假正例、真反例、假反例计算并返回Rand指数。
-    - MSE类
-        - 该类的__call__调用并返回loss函数。
-        - loss函数依据公式计算并返回真实值与预测值的均方误差。
-    - RMSE类
-        - 该类的__call__调用并返回loss函数。
-        - loss函数依据公式计算并返回真实值与预测值的均方根误差。
-    - Distance类
-        - 该类的__call__调用并返回minkowski_distance函数。
-        - minkowski_distance函数依据公式计算并返回真实值与预测值的闵可夫斯基距离。
-- 本项目中的评估方法与适用的问题以及适用数据集的关系【表述为评估方法（适用的问题）：适用的数据集】
-    - Accuracy（分类问题）：IrisDataset，WineQualityDataset，HeartDiseaseDataSet
-    - F1（分类问题）：HeartDiseaseDataSet
-    - PR（分类问题）：HeartDiseaseDataSet
-    - AUC（分类问题）：HeartDiseaseDataSet
-    - ROC（分类问题）：HeartDiseaseDataSet
-    - FM（聚类问题）：IrisDataset，WineQualityDataset，HeartDiseaseDataSet
-    - Rand（聚类问题）：IrisDataset，WineQualityDataset，HeartDiseaseDataSet
-    - MSE（回归问题）：WineQualityDataset，HeartDiseaseDataSet
-    - RMSE（回归问题）：WineQualityDataset，HeartDiseaseDataSet
-    - Distance（聚类问题）：WineQualityDataset，HeartDiseaseDataSet
-#### 5. 工厂模式模块
-定义了一个 Factory 类和三个继承自 Factory 的子类：DataFactory、SplitterFactory 和 ModelFactory，以及一个独立的 EvaluationFactory 类。
-- DataFactory 类
-    - DataFactory 类通过 create_dataset 方法根据传入的数据集名称选择创建对应的数据集对象，目前支持的数据集有 iris、wine 和 heart disease。
-- SplitterFactory 类
-    - SplitterFactory 类通过 create_splitter 方法根据传入的分割器类型、特征矩阵 X、标签向量 y 和分割比例 percent 创建对应的数据集分割对象，目前支持的分割器有 bootstraping 和 holdout。
-- ModelFactory 类
-    - ModelFactory 类通过 create_model 方法根据传入的模型名称创建对应的模型对象，目前支持的模型有 KNN、K_means、Decision Tree、GradientBoosting、LR、SVM、LogisticRegression、NB 和 Random Forest。
-- EvaluationFactory 类
-    - EvaluationFactory 类通过 create_evaluation 方法根据传入的评估指标、真实标签 y_true、预测标签 y_pred、测试数据 x_test 和模型对象创建对应的评估对象，目前支持的评估指标有 auc、accuracy、distance、f1、fm、mse、pr、rmse、roc 和 rand。
+
+  
+
 ### （三）前端架构
 ####  1. web.html
 - `<head>`标签

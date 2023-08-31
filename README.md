@@ -84,70 +84,31 @@ eel.start(html=None, options=None, suppress_error=True)： 这个函数用于启
 其中在eel.start函数中使用了 WebSocket 技术来实现实时的双向通信，以便在服务器和客户端之间传递数据。在这个函数中，run_lambda() 函数启动了一个 WebSocket 服务器，允许用户端通过 WebSocket 连接与服务器进行实时通信。WebSocket 服务器的具体实现可能在 register_eel_routes() 函数中，从而确保 WebSocket 连接能够被正常处理。<br/>
 简单来说eel让我们更简单的完成websocket所做的前后端通信的工作，使工作量和代码行数大大减少。<br/>
 在本程序中，首先使用expose函数将十种算法后端代码暴露给JavaScript
-![image](https://github.com/kukukukujiedao/machine-learning-group5/assets/143621522/2354e15b-411b-43f8-aaed-85133627cd5d)
 
-
-
-
-
-
-  
-
-### （三）前端架构
-####  1. web.html
-- `<head>`标签
-设置文档的标题为“机器学习”，引入名为"web.css"的样式表文件用于设置页面的样式，名为"client.js"和"selection.js"的JavaScript脚本文件。
-- `<body>`标签
-`<h1>`定义一级标题为“机器学习模型评估”，使用`<p align=”center”>`使得文本居中对齐。
-    - 在id为”selection-area”的模块，包含了一系列的选项：用于用户选择数据集、分割器、分割比例、机器学习模型和模型评估指标。这些选项使用了居中对齐的二级标题，并用<div>和class属性进行包裹和样式控制。
-        - 用于选择数据集的radio按钮，class为"radio-container"，包含iris dataset，wine dataset和heart disease dataset三个选项。
-        - 用于选择分割器的radio按钮，包含set-side method和bootstraping method两个选项。
-        - 用于选择分割比例的radio按钮，包含10%和30%两个选项。
-        - 用于选择机器学习模型的radio按钮，包含KNN，K_means，SVM，GradientBoosting，linear regression，logistic regression，navie bayes，decision tree和random forest九个选项。
-        - 用于选择模型评估指标的radio按钮，包含Accuracy，Distance，AUC，F1，FM，MSE，PR，Rand，RMSE和ROC十个选项。
-    - 在id为“action-area”的模块，创建了一个操作区域，包含了"运行"和"重置"两个按钮。点击"运行"按钮会调用send()函数，点击"重置"按钮会调用resetForm()函数。这些按钮使用`<input>`标签创建，type属性指定按钮类型，value属性设置按钮显示的文本内容。
-    - 在id为“action-title”的模块，创建了一个带有"运行结果"标题的区域。
-    - 在id为“result-area”的模块，创建了一个用于显示结果的空白区域。
-整体实现了一个网页应用，用户可以通过选择选项来配置机器学习模型评估的各项参数，并点击"运行"按钮来获取相应的评估结果。页面中的样式表和脚本文件将用于控制网页的样式和实现交互功能。
-        
-####  2. web.css
-web.css用于设置选择区域、运行区域和结果显示区域的样式。
-- selection-area 是选择区域的样式，设置了高度为650px，背景色为#f2f2f2（浅灰色）。
-- .radio-container 是一个容器，用于包裹选项按钮。设置了 Flex 布局，并使其内部元素居中对齐和垂直居中。
-- input[type="radio"] 是选项按钮的样式，设置了右边距为5px。
-- action-area 是运行区域的样式，设置了高度为50px，背景色为#ffffff（白色）。
-- result-area 是结果显示区域的样式，设置了高度为300px，背景色为#ffffff（白色）。
-- .evaluationOption, .modelOption, .datasetOption, .splitterOption 是用于设置不同选项的样式，都使用了 Inline-block 布局，并设置了右外边距为10px。
-- .hidden 是一个类名，用于隐藏元素，设置了 display 属性为 none。
-- h1 是标题的样式，设置了字体为"微软雅黑"，居中对齐。
-这些样式通过 ID（以 # 开头）或类名（以 . 开头）来选取对应的元素，并为其设置相应的样式属性。通过这样的设置，可以使选择区域、运行区域和结果显示区域拥有特定的外观和布局。   
-####  3. selection.js
-selection.js用于实现交互的网页界面，包含了一些函数用于更新页面中的选项和元素显示状态，以及重置表单。
-- updateOptions() 函数用于根据选择的数据集来更新显示的选项。根据选择的数据集（通过获取选中的 radio 按钮的值），设置不同选项的显示状态。例如，如果选择的数据集是 "iris"，则将距离选项、MSE 选项和 RMSE 选项隐藏起来；如果选择的数据集是 "heart"，则显示 AUC 选项、F1 选项、PR 选项和 ROC 选项等。
-- updatepercent() 函数用于根据选择的划分方法来更新百分比选项的显示状态。根据选择的划分方法（通过获取选中的 radio 按钮的值），设置百分比选项的显示状态。例如，如果选择的划分方法是 "houldout"，则显示百分比选项；否则隐藏百分比选项。
-- updatedata() 函数用于根据选择的模型来更新数据选项的显示状态。根据选择的模型（通过获取选中的 radio 按钮的值），设置不同数据选项的显示状态。例如，如果选择的模型是 "K_means"、"KNN" 或 "NB"，则显示 iris 选项；如果选择的模型是 "SVM" 或 "LogisticRegression"，则隐藏 wine 选项等。
-- updatedata1() 函数用于根据选择的评估方法来更新数据选项的显示状态。根据选择的评估方法（通过获取选中的 radio 按钮的值），设置不同数据选项的显示状态。例如，如果选择的评估方法是 "accuracy"、"fm" 或 "rand"，则显示 iris 选项；如果选择的评估方法是 "auc"、"f1"、"pr" 或 "roc"，则隐藏 wine 选项等。
-- updatesplitter() 函数用于根据选择的百分比划分方法来更新划分选项的显示状态。根据选择的百分比划分方法（通过获取选中的 radio 按钮的值），设置不同划分选项的显示状态。例如，如果选择的百分比划分方法是 "10%" 或 "30%"，则隐藏 CV 选项和 Bootstraping 选项等。
-- resetForm() 函数用于重置表单，将所有 radio 按钮的选中状态取消，并刷新页面。
-这些函数通常用于在用户与页面中的选项进行交互时，根据选择的结果动态更新页面的显示状态，以提供更好的用户体验。
-
-### （四）前后端连接架构
-利用websocket建立连接
-#### 1. client.js:利用websocket实现接口连接
-- websocket.onopen:建立连接
-- send:向服务端发送数据
-- websocket.addEventListener:关闭连接
-- websocket.onmessage：接收服务端数据
-#### 2. server.py:处理WebSocket连接的服务器端程序，用于接收客户端发送的消息并执行相应的数据处理操作，然后将结果返回给客户端
-- handle_message(websocket, path)：异步处理函数  
-在循环中，根据接收到的消息执行相应的逻辑操作。  
-如果message=='close_signal'，则打印一条信息并断开连接，停止事件循环。  
-否则，将根据字典中的值进行相应的数据处理操作，包括创建数据集、分割数据集、构建模型、进行预测和评估等。最后，它会将处理结果发送回客户端。  
-- run()函数  
-创建一个WebSocket服务器对象，指定其运行的主机地址和端口号。  
-通过asyncio.get_event_loop().run_until_complete()方法来启动服务器。  
-接着，它会打开一个网页，路径为文件系统中的web.html文件。  
-最后，通过asyncio.get_event_loop().run_forever()方法来运行事件循环，使服务器一直运行并等待客户端连接。  
+### （三）后端架构
+> 后端分为数据集，数据分割，训练和评估四个功能模块，模型模块设置父类，其余设为成员函数分别为load_data函数，Splitr函数，train_data函数、test函数、plot_predictions函数。  
+#### 1. 数据集模块
+-load_data函数里包含从sklearn.datasets中调用的load_wine()函数和load_iris()函数
+通过形参dataname的值来调用不同的数据集，再通过赋值，返回data和target的值。
+#### 2. 数据分割模块
+若前端返回形参n=0，则该函数首先根据随机状态设置随机种子，再获取样本数量和测试集大小，然后随机选择测试集的索引，最后依据索引构建训练集和测试集，然后训练决策树模型并计算准确率。
+若前端返回形参n=1，该函数首先进行m次放回抽样，得到训练集的序号，然后将剩下的序号记为测试集序号，最后产生训练/测试集，然后训练决策树模型并计算准确率。
+#### 3. 模型模块
+Model共有八个类，分别为DecisionTree类，SVM类，GBDT类，NB类，LinearRegression类，LogisticRegression类，KNN类和KMeans类。  
+- DecisionTree类，SVM类，GBDT类，NBC类，Linear类，Logistic类，KNN类，KMeans类
+    - 主要函数为fit函数和predict函数，其他函数根据这两个函数所需来写。
+    - fit函数，即训练函数。该函数负责模型的训练。
+    - predict函数，即预测函数。该函数负责模型的预测。
+- randomForest类
+    - 继承自DecisionTree类，主要函数为fit函数和predict函数，同时会用到DecisionTree类来构建所需的决策树。
+- PCA类
+    - LinearRegression类，LogisticRegression类，KNN类和KMeans类中调用了该类的transform函数。
+- 当数据的维度大于4时，调用该函数对数据进行降维处理。
+#### 4. 训练模块
+通过train_data函数中的StandardScaler()标准化函数和fit_transform()函数进行数据的训练。
+#### 5. 评估模块
+   -test()函数：当前端返回的形参n为0时，调用split_data_Random()函数，从而求得留出法下，模型的准确率等数据；当前端返回的形参n为1时，调用split_data_K_Fold()函数，从而求得交叉验证法下，模型的准确率等数据；
+   -plot_predictions（）函数：对模型以及数据进行可视化处理，更利于观察和分析。
 
 ## 六、前后端代码仓库链接
 https://github.com/stupid-vegetable-bird/machine_learning_group4.git

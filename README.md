@@ -111,7 +111,7 @@ Model共有八个类，分别为DecisionTree类，SVM类，GBDT类，NB类，Lin
    -plot_predictions（）函数：对模型以及数据进行可视化处理，更利于观察和分析。
 
 ## 六、前后端代码仓库链接
-https://github.com/stupid-vegetable-bird/machine_learning_group4.git
+https://github.com/kukukukujiedao/machine-learning-group5
 
 ## 七、代码运行方式说明
 运行code文件夹中的main.py文件，即下图中红框标记的文件  
